@@ -7,3 +7,13 @@ services:
   envVars:
   - key: PUBLIC_PORT
     value: 80
+  - key: MY_ENV_VAR
+    value: "Howdy Folks 👋"
+  - key: MY_ENV_VAR_NUMBER
+    value: 1234
+  - key: MY_ENV_VAR_STRING
+    value: "1234"
+  - key: MY_ENV_VAR_STRING_WITH_SPACES
+    value: "Howdy Folks"
+  - key: MY_ENV_VAR_STRING_WITH_EMOJI
+    value: "👋"

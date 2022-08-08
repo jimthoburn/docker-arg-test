@@ -30,14 +30,26 @@ COPY . .
 # https://render.com/docs/docker
 #
 ARG PUBLIC_PORT
+ARG MY_ENV_VAR
+ARG MY_ENV_VAR_STRING
+ARG MY_ENV_VAR_STRING_WITH_SPACES
+ARG MY_ENV_VAR_STRING_WITH_EMOJI
 
 # Send a message during the build process
 RUN echo "Hello from the Dockerfile 🐳"
 RUN echo "The value of the PUBLIC_PORT environment variable is: $PUBLIC_PORT"
+RUN echo "The value of the PUBLIC_PORT environment variable is: $MY_ENV_VAR"
+RUN echo "The value of the PUBLIC_PORT environment variable is: $MY_ENV_VAR_STRING"
+RUN echo "The value of the PUBLIC_PORT environment variable is: $MY_ENV_VAR_STRING_WITH_SPACES"
+RUN echo "The value of the PUBLIC_PORT environment variable is: $MY_ENV_VAR_STRING_WITH_EMOJI"
 
 # Write the same message to a log file
 RUN echo "Hello from the Dockerfile 🐳" >> /usr/src/app/dockerfile-log.txt
 RUN echo "The value of the PUBLIC_PORT environment variable is: $PUBLIC_PORT" >> /usr/src/app/dockerfile-log.txt
+RUN echo "The value of the PUBLIC_PORT environment variable is: $MY_ENV_VAR" >> /usr/src/app/dockerfile-log.txt
+RUN echo "The value of the PUBLIC_PORT environment variable is: $MY_ENV_VAR_STRING" >> /usr/src/app/dockerfile-log.txt
+RUN echo "The value of the PUBLIC_PORT environment variable is: $MY_ENV_VAR_STRING_WITH_SPACES" >> /usr/src/app/dockerfile-log.txt
+RUN echo "The value of the PUBLIC_PORT environment variable is: $MY_ENV_VAR_STRING_WITH_EMOJI" >> /usr/src/app/dockerfile-log.txt
 
 # Set an environment variable for the running application
 #
