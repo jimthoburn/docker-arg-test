@@ -1,9 +1,8 @@
 services:
-- type: web
-  name: render-example-node-docker-secret-file
+- type: worker
+  name: docker-arg-test
   plan: starter
   env: docker
-  pullRequestPreviewsEnabled: false
   envVars:
-  - key: PUBLIC_PORT
-    value: 80
+  - key: MY_ENV_VAR
+    value: "Howdy folks 👋"
