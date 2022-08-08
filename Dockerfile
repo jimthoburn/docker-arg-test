@@ -17,24 +17,40 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-ARG MY_ENV_VAR
-ARG NEW_ENV_VAR="Hello World!"
+# Secret files can be accessed within a Dockerfile
+# https://render.com/docs/docker-secrets
+#
+# RUN --mount=type=secret,id=_secret_env cat .secret-env
+
+# Define a variable that can be passed in at build-time
+# It will be available for use in this Dockerfile
+#
+# Environment variables that you set in the Render dashboard
+# are automatically translated to Docker build args by Render:
+# https://render.com/docs/docker
+#
+ARG PUBLIC_PORT
 
 # Send a message during the build process
 RUN echo "Hello from the Dockerfile 🐳"
-RUN echo "The value of the MY_ENV_VAR environment variable is: $MY_ENV_VAR"
-RUN echo "The value of the NEW_ENV_VAR environment variable is: $NEW_ENV_VAR"
+RUN echo "The value of the PUBLIC_PORT environment variable is: $PUBLIC_PORT"
 
 # Write the same message to a log file
 RUN echo "Hello from the Dockerfile 🐳" >> /usr/src/app/dockerfile-log.txt
-RUN echo "The value of the MY_ENV_VAR environment variable is: $MY_ENV_VAR" >> /usr/src/app/dockerfile-log.txt
-RUN echo "The value of the NEW_ENV_VAR environment variable is: $NEW_ENV_VAR" >> /usr/src/app/dockerfile-log.txt
+RUN echo "The value of the PUBLIC_PORT environment variable is: $PUBLIC_PORT" >> /usr/src/app/dockerfile-log.txt
 
-ENV MY_ENV_VAR=$MY_ENV_VAR
-ENV NEW_ENV_VAR=$NEW_ENV_VAR
+# Set an environment variable for the running application
+#
+# Environment variables that you set in the Render dashboard
+# are automatically made available to your application:
+# https://render.com/docs/configure-environment-variables
+#
+# But this line is useful for local testing:
+#
+ENV PUBLIC_PORT=$PUBLIC_PORT
 
 # Open a port for the running application to listen on
-EXPOSE 80
+EXPOSE $PUBLIC_PORT
 
 # Start the application
 CMD /bin/bash -c 'bash ./start.sh'

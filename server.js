@@ -3,7 +3,7 @@
 const express = require('express');
 
 // Constants
-const PORT = 80;
+const PORT = process.env.PUBLIC_PORT ?? 10000;
 const HOST = '0.0.0.0';
 
 // App
@@ -21,4 +21,4 @@ app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 
 console.log(`Hello from the app 📦`);
-console.log(`The value of the MY_ENV_VAR environment variable is: ${ process.env.MY_ENV_VAR }`);
+console.log(`The value of the SECRET_PORT environment variable is: ${ process.env.SECRET_PORT }`);
