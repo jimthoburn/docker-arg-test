@@ -11,3 +11,7 @@ ARG NEW_ENV_VAR="Hello World!"
 RUN echo "The value of the NEW_ENV_VAR argument is: $NEW_ENV_VAR"
 
 ENV MY_ENV_VAR=$MY_ENV_VAR
+ENV NEW_ENV_VAR=$NEW_ENV_VAR
+
+# Start the application
+CMD /bin/bash -c 'bash ./start.sh'
