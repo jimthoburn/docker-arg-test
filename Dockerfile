@@ -5,6 +5,15 @@ FROM node:14
 # Create app directory
 WORKDIR /usr/src/app
 
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
+COPY package*.json ./
+
+RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
+
 # Bundle app source
 COPY . .
 
@@ -23,6 +32,9 @@ RUN echo "The value of the NEW_ENV_VAR environment variable is: $NEW_ENV_VAR" >>
 
 ENV MY_ENV_VAR=$MY_ENV_VAR
 ENV NEW_ENV_VAR=$NEW_ENV_VAR
+
+# Open a port for the running application to listen on
+EXPOSE 80
 
 # Start the application
 CMD /bin/bash -c 'bash ./start.sh'
