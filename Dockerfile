@@ -2,6 +2,12 @@
 
 FROM node:14
 
+# Create app directory
+WORKDIR /usr/src/app
+
+# Bundle app source
+COPY . .
+
 RUN echo "Hello from the Dockerfile 🐳"
 
 ARG MY_ENV_VAR
