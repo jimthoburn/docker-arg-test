@@ -8,13 +8,18 @@ WORKDIR /usr/src/app
 # Bundle app source
 COPY . .
 
-RUN echo "Hello from the Dockerfile 🐳"
-
 ARG MY_ENV_VAR
-RUN echo "The value of the MY_ENV_VAR environment variable is: $MY_ENV_VAR"
-
 ARG NEW_ENV_VAR="Hello World!"
-RUN echo "The value of the NEW_ENV_VAR argument is: $NEW_ENV_VAR"
+
+# Send a message during the build process
+RUN echo "Hello from the Dockerfile 🐳"
+RUN echo "The value of the MY_ENV_VAR environment variable is: $MY_ENV_VAR"
+RUN echo "The value of the NEW_ENV_VAR environment variable is: $NEW_ENV_VAR"
+
+# Write the same message to a log file
+RUN echo "Hello from the Dockerfile 🐳" >> /usr/src/app/dockerfile-log.txt
+RUN echo "The value of the MY_ENV_VAR environment variable is: $MY_ENV_VAR" >> /usr/src/app/dockerfile-log.txt
+RUN echo "The value of the NEW_ENV_VAR environment variable is: $NEW_ENV_VAR" >> /usr/src/app/dockerfile-log.txt
 
 ENV MY_ENV_VAR=$MY_ENV_VAR
 ENV NEW_ENV_VAR=$NEW_ENV_VAR
